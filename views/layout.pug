@@ -1,7 +1,24 @@
 doctype html
 html
-  head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
-  body
+    head
+        title= title
+        link(rel='stylesheet', href='/stylesheets/style.css')
+        link(rel='stylesheet', href='/stylesheets/jquery-ui.css')
+        link(rel='stylesheet', href='/stylesheets/datatables.min.css')
+        link(rel='stylesheet', href='stylesheets/buttons.dataTables.min.css')
+        script(src="/javascripts/jquery-3.2.1.js")
+        script(src="/javascripts/datatables.min.js")
+        script(src="/javascripts/moment-with-locales.js")
+        script(src="/javascripts/buttons.html5.min.js")
+        script(src="/javascripts/dataTables.buttons.min.js")
+        script(src="/javascripts/jszip.min.js")
+        script(src="/javascripts/pdfmake.min.js")
+        script(src="/javascripts/vfs_fonts.js")
+        script(src="/javascripts/datetime-moment.js")
+        script(src="/javascripts/buttons.colVis.min.js")
+        script(src="/javascripts/buttons.print.min.js")
+
+
+        script(src="/javascripts/mestable.js")
+body
     block content

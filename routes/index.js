@@ -1,24 +1,43 @@
 var express = require('express');
-var pool = require("../mssql");
+var DBUtil = require('../dbUtils');
 var router = express.Router();
-var list = 0;
+
 /* GET home page. */
-router.get('/', function (req, res, next) {/*
-    pool.pool.request().query('SELECT     ID, DateTime_\n' +
-        'FROM         Measurements\n' +
-        'WHERE     (ID > 93000)', function (err, result) {
-        // ... error checks
-        list = result;
-        //console.dir(list.recordset);
-        res.render('index', {title: list.recordset[0].toString()});
-
-    });*/
-    list=pool.getData();
-    res.render('index', {title: list});
-    //
-    //
-    console.log(list);
-    //console.log(pool.rr);
-
+router.get('/', function (req, res, next) {
+    res.render('index', {title: "Данные"});
 });
+
+
+router.get('/measurements', function (req, res, next) {
+    res.render('measurements', {title: "измерения"});
+});
+
+router.get('/measurementsTable', function (req, res, next) {
+
+    res.setHeader("Content-Type", "application/json; charset=utf-8");
+    DBUtil.query('SELECT     *\n' +
+        'FROM         Measurements\n' +
+        'WHERE     (ID > 94000)', function (err, recordsets) {
+        if (err) console.log(err);
+        var data = {data: recordsets.recordset};
+
+        res.end(JSON.stringify(data));
+    });
+});
+
+router.get('/analiz/:id', function (req, res, next) {
+    res.setHeader("Content-Type", "application/json; charset=utf-8");
+    var sql = "SELECT     Component, Value_    FROM         Results    WHERE     (Measurement ="+    req.params.id +")";
+    console.log(sql);
+    DBUtil.query(sql, function (err, recordsets) {
+        if (err) console.log(err);
+        var data = {data: recordsets.recordset};
+
+        res.end(JSON.stringify(data));
+    });
+    //res.send('What is up ' + req.params.id + '!');
+});
+
+
 module.exports = router;
+

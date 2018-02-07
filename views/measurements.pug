@@ -1,0 +1,35 @@
+extends layout
+
+block content
+    h1= "Измерения"
+    table(id="meastable" class="display dataTable no-footer")
+        thead
+            tr
+                th="Номер"
+                th="Дата измерения"
+                th="TypeOfSample"
+                th="Matrix"
+                th="MatrixDescription"
+                th="AnalysisProgram"
+                th="AnalysisProgramDescription"
+                th="AnalysisMode"
+                th="TaskNumber"
+                th="TaskName"
+                th="MaterialName"
+                th="ID1"
+                th="ID2"
+                th="ID3"
+                th="ID4"
+                th="ID5"
+                th="ID6"
+                th="Comment"
+                th="Average"
+
+    table(id="analiz" class="display dataTable no-footer")
+        thead
+            tr
+                th="Элемент"
+                th="Результат"
+
+    p #{title}
+
